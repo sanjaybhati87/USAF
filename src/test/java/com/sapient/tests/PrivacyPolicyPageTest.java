@@ -125,7 +125,7 @@ public class PrivacyPolicyPageTest extends SeleniumTestPlan {
 	 termsPage.goBack();
 	 CustomAssertion.assertTrue(privacyPlocyPage.getTitle().contains("Privacy policy"), "User is not navigated to Privacy Policy page  after clicking on BACK button");
 	
-	 	
+	 	System.out.println("Sanjay Bhati");
 		 
 	 }
 
