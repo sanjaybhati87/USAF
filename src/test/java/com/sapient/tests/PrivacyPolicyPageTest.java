@@ -126,6 +126,7 @@ public class PrivacyPolicyPageTest extends SeleniumTestPlan {
 	 CustomAssertion.assertTrue(privacyPlocyPage.getTitle().contains("Privacy policy"), "User is not navigated to Privacy Policy page  after clicking on BACK button");
 	
 	 	System.out.println("Rajni Bhati");
+
 	 	CustomAssertion.assertTrue(privacyPlocyPage.getTitle().contains("Privacy policy2"), "User is not navigated to Privacy Policy page  after clicking on BACK button");
 		
 	 	System.out.println("Rajni Bhati3");
@@ -133,6 +134,11 @@ public class PrivacyPolicyPageTest extends SeleniumTestPlan {
 		
 	 	System.out.println("Rajni Bhati4");
 	 	
+
+	 	System.out.println("Sanjay Singh bhati");
+	 	System.out.println("Rajni Bhati2");
+	 	System.out.println("Sanjay Singh bhati2");
+
 		 
 	 }
 
