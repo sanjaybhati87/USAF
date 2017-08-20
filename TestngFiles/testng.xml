@@ -1,0 +1,62 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="WMF Test Suite" parallel="methods"
+       verbose="1" thread-count="1">
+       <listeners>
+        <listener class-name="com.sapient.reporter.SeleniumTestsReporter" />
+        <listener class-name="com.sapient.core.TestRetryListener" />
+    </listeners>
+  
+    <parameter name="runMode" value="LOCAL" /> <!--LOCAL or ExistingGrid -->
+     <!--if parameter runMode is set to ExistingGrid then parameter webDriverGrid should have value set to system running grid
+
+    To start grid on a machine use following command -
+    java -jar selenium-server-standalone-<version>.jar -role hub
+
+    To execute tests on firefox using selenium grid, start node running firefox as -
+    java -jar selenium-server-standalone-<version>.jar -role node  -hub http://localhost:4444/grid/register
+    -browser  browserName=firefox platform=WINDOWS, ensureCleanSession=true, javascriptEnabled=true, acceptSslCerts=true,
+    ignoreProtectedModeSettings=true, ignoreZoomSetting=true, takesScreenshot=true
+
+    To execute tests on chrome using selenium grid, start node running chrome as -
+    java -jar selenium-server-standalone-<version>.jar -role node  -hub http://localhost:4444/grid/register -browser  browserName
+    =chrome platform=WINDOWS, ensureCleanSession=true, javascriptEnabled=true, acceptSslCerts=true, ignoreProtectedModeSettings=true,
+    ignoreZoomSetting=true, takesScreenshot=true -Dwebdriver.chrome.driver="<path to chrome driver exe on node machine>\chromedriver.exe"
+
+    To execute tests on internet explorer using selenium grid, start node running internet explorer as -
+    java -jar selenium-server-standalone-<version>.jar -role node  -hub http://localhost:4444/grid/register -browser  browserName
+    ="internet explorer" platform=WINDOWS, ensureCleanSession=true, javascriptEnabled=true, acceptSslCerts=true, ignoreProtectedModeSettings=true,
+    ignoreZoomSetting=true, takesScreenshot=true -Dwebdriver.ie.driver="<path to internet explorer driver on node machine>\IEDriverServer.exe"
+    -->
+    <parameter name="appURL" value="https://wellingtonfunds-staging.kurtosysweb.com/wp-login.php?use_sso=false"/>
+    <parameter name="browser" value="*chrome" />  <!--"*firefox, *chrome, *iexplore, *android"-->
+    <parameter name="webDriverGrid" value="http://localhost:4444/wd/hub" /> 
+    <parameter name="webSessionTimeOut" value="120000" />
+    <parameter name="maxConcurrentWebSessions" value="5" />
+    <parameter name="softAssertEnabled" value="true" />
+      <parameter name="userName" value="sibaprasad" />
+       <parameter name="password" value="Sapient@123" />
+       <parameter name="region" value="Europe" />
+       <parameter name="country" value="United Kingdom" />
+        <parameter name="clientType" value="Institutional" />
+       <parameter name="explicitWaitTimeOut" value="100" />
+    <!-- For soft assert, use assert APIs from  com.seleniumtests.core.CustomAssertion class-->
+    <parameter name="useFirefoxDefaultProfile" value="false"/>
+      <parameter name="hmlreportlogging" value="true" />
+ <!-- For logWebStep for each web step, by default this is true but if user does not want to display web steps on the report then change the value to false-->
+ 
+ 
+<test name="Post Home Page Test">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+       <classes>
+      <class name="com.sapient.tests.HomePageTest">
+           <methods>
+        <include name="verifyUIOfpreHomePage" /> 
+      </methods>
+      </class> <!-- com.sapient.tests.HomePostAttestationPageTest -->
+    </classes>          
+    </test> 
+	
+	
+	
+</suite> 

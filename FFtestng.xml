@@ -1,0 +1,244 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="WMF Test Suite" parallel="methods"
+       verbose="1" thread-count="1">
+    <listeners>
+        <listener class-name="com.sapient.reporter.SeleniumTestsReporter" />
+        <listener class-name="com.sapient.core.TestRetryListener" />
+    </listeners>
+    <parameter name="appURL" value="http://wellington:n0tgni113w@wellington-dev.kurtosysdev.com/non-wp/WMF_Home-pre-attestation.php"/>
+    <parameter name="browser" value="*iexplore" />  <!--"*firefox, *chrome, *iexplore, *android"-->
+    <parameter name="runMode" value="LOCAL" /> <!--LOCAL or ExistingGrid -->
+    <!--if parameter runMode is set to ExistingGrid then parameter webDriverGrid should have value set to system running grid
+
+    To start grid on a machine use following command -
+    java -jar selenium-server-standalone-<version>.jar -role hub
+
+    To execute tests on firefox using selenium grid, start node running firefox as -
+    java -jar selenium-server-standalone-<version>.jar -role node  -hub http://localhost:4444/grid/register
+    -browser  browserName=firefox platform=WINDOWS, ensureCleanSession=true, javascriptEnabled=true, acceptSslCerts=true,
+    ignoreProtectedModeSettings=true, ignoreZoomSetting=true, takesScreenshot=true
+
+    To execute tests on chrome using selenium grid, start node running chrome as -
+    java -jar selenium-server-standalone-<version>.jar -role node  -hub http://localhost:4444/grid/register -browser  browserName
+    =chrome platform=WINDOWS, ensureCleanSession=true, javascriptEnabled=true, acceptSslCerts=true, ignoreProtectedModeSettings=true,
+    ignoreZoomSetting=true, takesScreenshot=true -Dwebdriver.chrome.driver="<path to chrome driver exe on node machine>\chromedriver.exe"
+
+    To execute tests on internet explorer using selenium grid, start node running internet explorer as -
+    java -jar selenium-server-standalone-<version>.jar -role node  -hub http://localhost:4444/grid/register -browser  browserName
+    ="internet explorer" platform=WINDOWS, ensureCleanSession=true, javascriptEnabled=true, acceptSslCerts=true, ignoreProtectedModeSettings=true,
+    ignoreZoomSetting=true, takesScreenshot=true -Dwebdriver.ie.driver="<path to internet explorer driver on node machine>\IEDriverServer.exe"
+    -->
+
+    <parameter name="webDriverGrid" value="http://localhost:4444/wd/hub" /> 
+    <parameter name="webSessionTimeOut" value="120000" />
+    <parameter name="maxConcurrentWebSessions" value="5" />
+    <parameter name="softAssertEnabled" value="true" />
+      <parameter name="testRetryCount" value="2" />
+    <!-- For soft assert, use assert APIs from  com.seleniumtests.core.CustomAssertion class-->
+    <parameter name="useFirefoxDefaultProfile" value="false"/>
+      <parameter name="hmlreportlogging" value="true" />
+ <!-- For logWebStep for each web step, by default this is true but if user does not want to display web steps on the report then change the value to false-->
+
+	 <test name="Pre Attestation Home Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Home-pre-attestation.php"/>
+       <classes>
+      <class name="com.sapient.tests.HomePageTest">
+      </class> <!-- com.sapient.tests.HomePageTest -->
+    </classes>          
+    </test> 
+	
+    <test name="CookiePolicy Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_CookiePolicy.php"/>
+       <classes>
+      <class name="com.sapient.tests.CookiePolicyTest">
+      </class> <!-- com.sapient.tests.CookiePolicyTest -->
+    </classes>          
+    </test> 
+	<test name="RegionalHome Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Home-post-attestation.php"/>
+       <classes>
+      <class name="com.sapient.tests.RegionalHomePageTest">
+      </class> <!-- com.sapient.tests.RegionalHomePageTest -->
+    </classes>          
+    </test>
+    
+    <test name="PreContactUs Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Contactus_submit-a-request.php#submit-a-request"/>
+       <classes>
+      <class name="com.sapient.tests.ContactUsPagePreattestationTest">
+      </class> <!-- com.sapient.tests.ContactUsPagePreattestationTest -->
+    </classes>          
+    </test>
+    
+     <test name="ContactUs Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Contactus_submit-a-request.php#local-contact"/>
+       <classes>
+      <class name="com.sapient.tests.ContactUsPageTest">
+      </class> <!-- com.sapient.tests.ContactUsPageTest -->
+    </classes>          
+    </test>
+	 <test name="Search Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Search_Results.php"/>
+       <classes>
+      <class name="com.sapient.tests.SearchResultPageTest">
+      </class> <!-- com.sapient.tests.SearchResultPageTest -->
+    </classes>          
+    </test>
+	 <test name="Search litrature Page tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Search_Results_Literature.php"/>
+       <classes>
+      <class name="com.sapient.tests.SearchResulLitraturePageTest">
+      </class> <!-- com.sapient.tests.SearchResulLitraturePageTest -->
+    </classes>          
+    </test>
+	<test name="InsightLanding landing Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_insightslanding.php"/>
+       <classes>
+      <class name="com.sapient.tests.InsightLandingPageTest">
+      </class> <!-- com.sapient.tests.InsightLandingPageTest -->
+    </classes>          
+    </test>
+	 <test name="Insight Author bio  Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Insigts_authorbio.php"/>
+       <classes>
+      <class name="com.sapient.tests.InsightAutherBioPageTest">
+      </class> <!-- com.sapient.tests.InsightAutherBioPageTest -->
+    </classes>          
+    </test>
+	<test name="Insight Feature Auther bio  Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Insights_featureauthorbio.php"/>
+       <classes>
+      <class name="com.sapient.tests.InsightfeatureauthorbioPageTest">
+      </class> <!-- com.sapient.tests.InsightfeatureauthorbioPageTest -->
+    </classes>          
+    </test>
+	 <test name="Insight commentry  Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Article_Insight_commentary.php"/>
+       <classes>
+      <class name="com.sapient.tests.InsightcommentaryPageTest">
+      </class> <!-- com.sapient.tests.InsightcommentaryPageTest -->
+    </classes>          
+    </test>
+	 <test name="All Insight  Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_AllInsights.php"/>
+       <classes>
+      <class name="com.sapient.tests.AllInsightPageTest">
+      </class> <!-- com.sapient.tests.ListViewAtGlancePageTest -->
+    </classes>          
+    </test>
+ 
+ 
+ 
+ 
+ <test name="Article Insight  Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Article_Insight-v2.php"/>
+       <classes>
+      <class name="com.sapient.tests.ArticleInsightPageTest">
+      </class> <!-- com.sapient.tests.ArticleInsightPageTestt -->
+    </classes>          
+    </test>
+	<test name="Funds Landing Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_fundslanding.php"/>
+       <classes>
+      <class name="com.sapient.tests.FundsLandingPageTest">
+      </class> <!-- com.sapient.tests.InsightArticleVideoPageTest -->
+    </classes>          
+    </test>
+	<test name="Fund Pricing  Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/funds/WMF_funds_pricing.php"/>
+       <classes>
+      <class name="com.sapient.tests.FundPricingPageTest">
+      </class> <!-- com.sapient.tests.FundPricingPageTest -->
+    </classes>          
+    </test>
+	  <test name="Fund list view performance Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/funds/WMF_funds_listview_performance.php"/>
+       <classes>
+      <class name="com.sapient.tests.FundsListviewPerformancePageTest">
+      </class> <!-- com.sapient.tests.FundsListviewPerformancePageTest -->
+    </classes>          
+    </test>
+	
+	<test name="Fund litrature Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/funds/WMF_funds_literature.php"/>
+       <classes>
+      <class name="com.sapient.tests.FundsLitraturePageTest">
+      </class> <!-- com.sapient.tests.FundsLitraturePageTest -->
+    </classes>          
+    </test>
+	
+	 <test name="Fund detail Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/funds/WMF_funds_detail.php"/>
+       <classes>
+      <class name="com.sapient.tests.FundDetailsPageTest">
+      </class> <!-- com.sapient.tests.FundDetailsPageTest -->
+    </classes>          
+    </test>
+	 <test name="List View At Glance Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/funds/WMF_funds_listview-ataglance.php"/>
+       <classes>
+      <class name="com.sapient.tests.ListViewAtGlancePageTest">
+      </class> <!-- com.sapient.tests.ListViewAtGlancePageTest -->
+    </classes>          
+    </test>
+	
+	<test name="Capability Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Capabilites.php"/>
+       <classes>
+      <class name="com.sapient.tests.CapabilityPageTest">
+      </class> <!-- com.sapient.tests.CapabilityPageTest -->
+    </classes>          
+    </test>
+    
+    <test name="Capability V1 Page  tested on Firefox">
+        <!--testType parameter is optional for web test, since testType defaults to web-->
+        <parameter name="testType" value="web" />
+        <parameter name="appURL" value="http://wellington-dev.kurtosysdev.com/non-wp/WMF_Capabilites_v1.php"/>
+       <classes>
+      <class name="com.sapient.tests.CapabilityV1PageTest">
+      </class> <!-- com.sapient.tests.CapabilityPageTest -->
+    </classes>          
+    </test>
+	
+   
+</suite> 
