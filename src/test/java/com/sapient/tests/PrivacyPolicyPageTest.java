@@ -137,7 +137,7 @@ public class PrivacyPolicyPageTest extends SeleniumTestPlan {
 
 	 	System.out.println("Sanjay Singh bhati");
 	 	System.out.println("Rajni Bhati2");
-	 	System.out.println("Sanjay Singh bhati2");
+	 	System.out.println("Sanjay Singh bhati6");
 
 		 
 	 }
